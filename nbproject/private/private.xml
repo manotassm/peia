@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/mmanotas/Documents/NetBeansProjects/AppBonds/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/mmanotas/Documents/AppBonds/src/java/co/com/peia/service/SecurityService.java</file>
+            <file>file:/C:/Users/mmanotas/Documents/AppBonds/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/mmanotas/Documents/AppBonds/src/java/co/com/peia/entity/PeiaStudent.java</file>
+            <file>file:/C:/Users/mmanotas/Documents/AppBonds/src/java/co/com/peia/facade/StudentFacade.java</file>
         </group>
     </open-files>
 </project-private>

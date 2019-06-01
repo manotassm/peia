@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -24,40 +23,43 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author mmanotas
  */
 @Entity
-@Table(name = "peia_student")
+@Table(name = "peia_employee")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PeiaStudent.findAll", query = "SELECT p FROM PeiaStudent p"),
-    @NamedQuery(name = "PeiaStudent.findById", query = "SELECT p FROM PeiaStudent p WHERE p.id = :id"),
-    @NamedQuery(name = "PeiaStudent.findByIdentification", query = "SELECT p FROM PeiaStudent p WHERE p.identification = :identification"),
-    @NamedQuery(name = "PeiaStudent.findByIdTypeIdentification", query = "SELECT p FROM PeiaStudent p WHERE p.idTypeIdentification = :idTypeIdentification"),
-    @NamedQuery(name = "PeiaStudent.findByFirstName", query = "SELECT p FROM PeiaStudent p WHERE p.firstName = :firstName"),
-    @NamedQuery(name = "PeiaStudent.findByLastName", query = "SELECT p FROM PeiaStudent p WHERE p.lastName = :lastName"),
-    @NamedQuery(name = "PeiaStudent.findByActive", query = "SELECT p FROM PeiaStudent p WHERE p.active = :active")})
-public class PeiaStudent implements Serializable {
+    @NamedQuery(name = "PeiaEmployee.findAll", query = "SELECT p FROM PeiaEmployee p"),
+    @NamedQuery(name = "PeiaEmployee.findById", query = "SELECT p FROM PeiaEmployee p WHERE p.id = :id"),
+    @NamedQuery(name = "PeiaEmployee.findByIdentification", query = "SELECT p FROM PeiaEmployee p WHERE p.identification = :identification"),
+    @NamedQuery(name = "PeiaEmployee.findByIdTypeIdentification", query = "SELECT p FROM PeiaEmployee p WHERE p.idTypeIdentification = :idTypeIdentification"),
+    @NamedQuery(name = "PeiaEmployee.findByFirstName", query = "SELECT p FROM PeiaEmployee p WHERE p.firstName = :firstName"),
+    @NamedQuery(name = "PeiaEmployee.findByLastName", query = "SELECT p FROM PeiaEmployee p WHERE p.lastName = :lastName"),
+    @NamedQuery(name = "PeiaEmployee.findByActive", query = "SELECT p FROM PeiaEmployee p WHERE p.active = :active"),
+    @NamedQuery(name = "PeiaEmployee.findByIdSecUser", query = "SELECT p FROM PeiaEmployee p WHERE p.idSecUser = :idSecUser")})
+public class PeiaEmployee implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Integer id;
     @Column(name = "identification")
     private Integer identification;
     @Column(name = "id_type_identification")
     private Integer idTypeIdentification;
-    @Size(max = 300)
-    @Column(name = "first_name", length = 300)
+    @Size(max = 200)
+    @Column(name = "first_name")
     private String firstName;
-    @Size(max = 300)
-    @Column(name = "last_name", length = 300)
+    @Size(max = 200)
+    @Column(name = "last_name")
     private String lastName;
     @Column(name = "active")
     private Boolean active;
+    @Column(name = "id_sec_user")
+    private Integer idSecUser;
 
-    public PeiaStudent() {
+    public PeiaEmployee() {
     }
 
-    public PeiaStudent(Integer id) {
+    public PeiaEmployee(Integer id) {
         this.id = id;
     }
 
@@ -109,6 +111,14 @@ public class PeiaStudent implements Serializable {
         this.active = active;
     }
 
+    public Integer getIdSecUser() {
+        return idSecUser;
+    }
+
+    public void setIdSecUser(Integer idSecUser) {
+        this.idSecUser = idSecUser;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -119,10 +129,10 @@ public class PeiaStudent implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PeiaStudent)) {
+        if (!(object instanceof PeiaEmployee)) {
             return false;
         }
-        PeiaStudent other = (PeiaStudent) object;
+        PeiaEmployee other = (PeiaEmployee) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -131,7 +141,7 @@ public class PeiaStudent implements Serializable {
 
     @Override
     public String toString() {
-        return "co.com.peia.entity.PeiaStudent[ id=" + id + " ]";
+        return "co.com.peia.entity.PeiaEmployee[ id=" + id + " ]";
     }
     
 }
