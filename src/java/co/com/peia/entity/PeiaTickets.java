@@ -39,6 +39,8 @@ public class PeiaTickets implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "name")
     private String name;
+    @Column(name="value")
+    private Integer valueTotal;
 
     public PeiaTickets() {
     }
@@ -61,6 +63,14 @@ public class PeiaTickets implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getValueTotal() {
+        return valueTotal;
+    }
+
+    public void setValueTotal(Integer valueTotal) {
+        this.valueTotal = valueTotal;
     }
 
     @Override
