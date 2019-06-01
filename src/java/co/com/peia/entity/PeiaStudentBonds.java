@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -40,6 +42,7 @@ public class PeiaStudentBonds implements Serializable {
     @Basic(optional = false)
     @Column(name = "code")
     private int code;
+    
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
     private Date creationDate;
@@ -48,10 +51,15 @@ public class PeiaStudentBonds implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Column(name = "id_creation_user")
     private Integer idCreationUser;
-    @Column(name = "id_student")
-    private Integer idStudent;
+    
+    
+    @JoinColumn(name = "id_student", referencedColumnName = "id")
+    @ManyToOne
+    private PeiaStudent idStudent;
+
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "value")
     private Double value;
@@ -100,11 +108,11 @@ public class PeiaStudentBonds implements Serializable {
         this.idCreationUser = idCreationUser;
     }
 
-    public Integer getIdStudent() {
+    public PeiaStudent getIdStudent() {
         return idStudent;
     }
 
-    public void setIdStudent(Integer idStudent) {
+    public void setIdStudent(PeiaStudent idStudent) {
         this.idStudent = idStudent;
     }
 

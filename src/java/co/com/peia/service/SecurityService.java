@@ -23,8 +23,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 /**
- *
- * @author mmanotas
+ * Servicio rest que manejara
+ * login a la aplicacion
+ * 
+ * @author marcos manotas
  */
 @Path("/securityServiceRest")
 public class SecurityService implements Serializable{

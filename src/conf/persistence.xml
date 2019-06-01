@@ -10,7 +10,8 @@
     <class>co.com.peia.entity.PeiaStudentBonds</class>
     <class>co.com.peia.entity.PeiaTickets</class>
     <class>co.com.peia.entity.PeiaTypeDocument</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <class>co.com.peia.entity.PeiaReserveMoney</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>
     <properties>

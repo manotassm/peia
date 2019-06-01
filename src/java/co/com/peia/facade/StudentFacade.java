@@ -22,7 +22,14 @@ public class StudentFacade {
     @PersistenceContext(unitName = "AppBondsPU")
     private EntityManager em;
     
-
+    /**
+     * Mewtodo iplemetnado para listar todos 
+     * los estudiantes en del sistema
+     * 
+     * author Marcos Manotas
+     * since Fecha de creacion 1/junio/20'19
+     * @return 
+     */
     public  List<PeiaStudent> getListStudent(){
             Query q=em.createNamedQuery("PeiaStudent.findAll");
           

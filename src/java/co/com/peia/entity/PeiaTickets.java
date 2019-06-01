@@ -36,9 +36,11 @@ public class PeiaTickets implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    
     @Size(max = 2147483647)
     @Column(name = "name")
     private String name;
+    
     @Column(name="value")
     private Integer valueTotal;
 

@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -42,15 +44,21 @@ public class PeiaReserveMoney implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "id_peia_tickets")
-    private Integer idPeiaTickets;
+    
+    @JoinColumn(name = "id_peia_tickets", referencedColumnName = "id")
+    @ManyToOne
+    private PeiaTickets idPeiaTickets;
+
     @Column(name = "cant")
     private Integer cant;
+    
     @Column(name = "id_creacion_user")
     private Integer idCreacionUser;
+    
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
     private Date creationDate;
+    
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "total")
     private Double total;
@@ -70,11 +78,11 @@ public class PeiaReserveMoney implements Serializable {
         this.id = id;
     }
 
-    public Integer getIdPeiaTickets() {
+    public PeiaTickets getIdPeiaTickets() {
         return idPeiaTickets;
     }
 
-    public void setIdPeiaTickets(Integer idPeiaTickets) {
+    public void setIdPeiaTickets(PeiaTickets idPeiaTickets) {
         this.idPeiaTickets = idPeiaTickets;
     }
 
