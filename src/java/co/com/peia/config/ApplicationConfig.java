@@ -9,8 +9,12 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 /**
- *
- * @author mmanotas
+ * Cle implememtada para gestionar
+ * toos los servicios REST eclarados en
+ * la aplicacion
+ * 
+ * @uthor Marco Manotas
+ * 
  */
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
@@ -31,6 +35,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(co.com.peia.service.AdminService.class);
         resources.add(co.com.peia.service.SecurityService.class);
+        resources.add(co.com.peia.service.StudentService.class);
         resources.add(co.com.peia.service.hola.class);
     }
 }
