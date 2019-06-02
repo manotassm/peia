@@ -31,7 +31,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PeiaStudentBonds.findAll", query = "SELECT p FROM PeiaStudentBonds p"),
-    @NamedQuery(name = "PeiaStudentBonds.findByCode", query = "SELECT p FROM PeiaStudentBonds p WHERE p.code = :code"),
     @NamedQuery(name = "PeiaStudentBonds.findByCreationDate", query = "SELECT p FROM PeiaStudentBonds p WHERE p.creationDate = :creationDate"),
     @NamedQuery(name = "PeiaStudentBonds.findById", query = "SELECT p FROM PeiaStudentBonds p WHERE p.id = :id"),
     @NamedQuery(name = "PeiaStudentBonds.findByIdCreationUser", query = "SELECT p FROM PeiaStudentBonds p WHERE p.idCreationUser = :idCreationUser"),
@@ -39,9 +38,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "PeiaStudentBonds.findByValue", query = "SELECT p FROM PeiaStudentBonds p WHERE p.value = :value")})
 public class PeiaStudentBonds implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @Column(name = "code")
-    private int code;
     
     @Column(name = "creation_date")
     @Temporal(TemporalType.DATE)
@@ -69,19 +65,6 @@ public class PeiaStudentBonds implements Serializable {
 
     public PeiaStudentBonds(Integer id) {
         this.id = id;
-    }
-
-    public PeiaStudentBonds(Integer id, int code) {
-        this.id = id;
-        this.code = code;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
     public Date getCreationDate() {
