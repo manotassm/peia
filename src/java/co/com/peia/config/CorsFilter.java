@@ -13,7 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// Enable it for Servlet 3.x implementations
+/**
+ * Clase implementada para gestionar
+ * el filtro ded las peticiones realizadas 
+ * al servidor esto con el fin e manejar
+ * que tipos e consultas estan permitiddas realizar
+ * conexion con el servior
+ * 
+ * @author marco manotas
+ */
 @WebFilter(asyncSupported = true, urlPatterns = {"/*"})
 public class CorsFilter implements Filter {
 
@@ -32,6 +40,11 @@ public class CorsFilter implements Filter {
     }
 
     /**
+     * Metoo implemento para recibir header de
+     * peticiones y tener control del tipo permitido
+     * 
+     * @author marcos manotas
+     * 
      * @param servletRequest
      * @param servletResponse
      * @param chain
@@ -50,21 +63,6 @@ public class CorsFilter implements Filter {
         response.addHeader("X-FRAME-OPTIONS", "DENY");
         response.setHeader("Allow", "GET,POST");
         
-        //Comentar cuando se trabaje angular en modo desarrollo para saltar sesion
-
-//        if (session == null) {
-//            if ("XMLHttpRequest".equals(httpReq.getHeader("x-requested-with"))) {
-//                response.setStatus(401);
-//                response.setContentType("application/json");
-//                response.getWriter().write( GenericJSONResponse.undefinedSession());
-//                return;
-//            } else {
-//                response.setStatus(401);
-//                response.getWriter().write("La sesión expiró");
-//                return;
-//            }
-//        }
-        //fin filtro session
         chain.doFilter(request, response);
     }
 

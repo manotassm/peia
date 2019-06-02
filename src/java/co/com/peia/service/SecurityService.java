@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -37,6 +38,18 @@ public class SecurityService implements Serializable{
     @EJB
     private SecurityFacade securityFacade;
     
+    /**
+     * Metoo implemento pra manejar el
+     * acceso a la aplicacion
+     * 
+     * @author Marcos Manotas
+     * @since fecha de Creacion 1/junio/2019
+     * 
+     * @param idRol
+     * @param user
+     * @param pass
+     * @return 
+     */
     @POST
     @Path("/login")
     public String login(@FormParam("idRol") Integer  idRol,
@@ -44,15 +57,16 @@ public class SecurityService implements Serializable{
                         @FormParam("pass") String  pass){
         try {
             
-            PeiaSecUser userLogin=this.securityFacade.loginUser(user, pass,idRol);
-            
+            PeiaSecUser userLogin=null;
+           
+            userLogin=this.securityFacade.loginUser(user, pass,idRol);
             
             JsonResponse response = new JsonResponse(true, JsonResponse.SUCCESFUL_PROCESSED_STATUS, "Usuario Logueado",userLogin);
 
             return response.toString();
             
         } catch (Exception e) {
-            return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, "Ha ocurrido un error al procesar la solicitud").toString();
+            return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, "Usuario/contraseña invalidda por favor verifique").toString();
         }
     }
     

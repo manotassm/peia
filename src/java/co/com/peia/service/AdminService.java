@@ -57,6 +57,12 @@ public class AdminService  implements Serializable{
                             @FormParam("cant") Integer cant){
         try {
             
+            if(idTicket==null || idTicket.equals(0))
+                throw new IllegalArgumentException("Debe seleccionar la denominaciòn del billete");
+            
+            if(cant==null || cant.equals(0))
+                throw new IllegalArgumentException("Debe ingresar la cantidad");
+            
             this.adminFacade.saveMoney(idUser, idTicket,cant);
             List<PeiaReserveMoney> list=this.adminFacade.findAllRegistre();
             
@@ -64,6 +70,8 @@ public class AdminService  implements Serializable{
 
             return response.toString();
             
+        } catch (IllegalArgumentException e) {
+            return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, e.getMessage()).toString();
         } catch (Exception e) {
             return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, "Ha ocurrido un error al procesar la solicitud").toString();
         }
@@ -139,6 +147,13 @@ public class AdminService  implements Serializable{
                             @FormParam("idUser") Integer idUser){
         try {
             
+            
+            if(idStudent==null || idStudent.equals(0))
+                throw new IllegalArgumentException("Debe seleccionar un estudiante");
+            
+            if(cantBono==null || cantBono.equals(0))
+                throw new IllegalArgumentException("Debe ingresar el valor de la cantidad");
+            
             this.adminFacade.saveBono(idStudent, cantBono,idUser);
             List<PeiaStudentBonds> list=this.adminFacade.findAllBono();
             
@@ -146,6 +161,8 @@ public class AdminService  implements Serializable{
 
             return response.toString();
             
+        } catch (IllegalArgumentException e){
+            return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, e.getMessage()).toString();          
         } catch (Exception e) {
             return new JsonResponse(false, JsonResponse.INTERNAL_ERROR_STATUS, "Ha ocurrido un error al procesar la solicitud").toString();
         }
